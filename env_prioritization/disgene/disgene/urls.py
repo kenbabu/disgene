@@ -15,13 +15,17 @@ Including another URLconf
 """
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import include
 from django.conf.urls import url
 from django.contrib import admin
-from diseasemods import views
+from diseasemods import views as diseasemods_views
+from contact import views as contact_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.home),
+    url(r'^accounts/', include('allauth.urls')),
+    url(r'^$', diseasemods_views.home, name='home'),
+    url(r'^contact/', contact_views.contact, name='contact'),
 ]
 
 if settings.DEBUG:
