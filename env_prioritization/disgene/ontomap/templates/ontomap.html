@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3">Map query to ontologies</h1>
+    <p class="lead">Keyword search </p>
+  </div>
+</div>
+<div class="container">
+	<div class="col-l-10 ml-auto mr-auto ">
+		<form>
+		  <div class="form-group">
+		    <label for="search">Search By Keyword</label>
+		    <input type="text" class="form-control" id="search" placeholder="Enter keyword ">
+		    <small id="emailHelp" class="form-text text-muted">Enter a descriptive keyword describing your disease such as name, symptoms, location e.t.c.</small>
+		  </div>
+		  <button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+</div>
+{% endblock content %}

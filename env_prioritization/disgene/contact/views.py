@@ -4,10 +4,41 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.core.mail import send_mail
 from django.conf import settings 
+from django.views.generic import FormView, View
+from django.http import JsonResponse
 
 from .forms import ContactForm
 
 # Create your views here.
+
+class ContactView(View):
+	def get(self, request, *args, **kwargs):
+		context = {}
+		template = "contact.html"
+		return render(request, template, context)
+
+
+class ContactFormView(FormView):
+	form_class = ContactForm
+	template_name = 'contact/contact.html'
+	success_url = '/contact-created/'
+
+	def form_invalid(self, form):
+		response = super(ContactFormView, self).form_invalid(form)
+		if self.request.is_ajax():
+			return JsonResponse(form.errors, status=400)
+	def form_valid(self, form):
+		response = super(ContactFormView, self).form_invalid(form)
+		print form.cleaned_data
+		if self.request.is_ajax():
+			print(form.cleaned_data)
+			data = {
+				'message': "Successfully submitted form data"
+			}
+			return JsonResponse(data)
+		else:
+			return response
+
 
 def contact(request):
 	title = 'Contact'

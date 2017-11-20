@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'diseasemods',
     'contact',
+    'ontomap',
     'crispy_forms',
     # all_auth stuff
     'allauth',
@@ -56,6 +57,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.twitter',
+    # django-rest framework
+    'rest_framework',
 
 
 ]

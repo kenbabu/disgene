@@ -19,13 +19,24 @@ from django.conf.urls import include
 from django.conf.urls import url
 from django.contrib import admin
 from diseasemods import views as diseasemods_views
-from contact import views as contact_views
+from contact.views import  ContactView, contact, ContactFormView
+from ontomap.views import  OntologyMapView
+from nanopub import views as nanopub_views
+from django.views.generic import TemplateView
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^$', diseasemods_views.home, name='home'),
-    url(r'^contact/', contact_views.contact, name='contact'),
+    url(r'^contact/', contact, name='contact'),
+    url(r'^contact-cbv/', ContactView.as_view(), name='contact_cbv'),
+    url(r'^ontomap/$', TemplateView.as_view(template_name='ontomap.html'), name='ontomap'),
+    url(r'^ontomap-list/$', OntologyMapView.as_view(), name='ontomap_list'),
+    url(r'^nanopub/', TemplateView.as_view(template_name='contact.html'), name='nanopub'),
+    url(r'^contact-form/$', ContactFormView.as_view(), name='contact_form'),
+    url(r'^tools/literature$',  TemplateView.as_view(template_name="contact.html"), name='literature'),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
 
 if settings.DEBUG:

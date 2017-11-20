@@ -7,11 +7,12 @@
 {% if confirm_message %}
 <p> {{ confirm_message }}</p>
 {% endif %}
-
-<div class="col-md-4 col-md-offset-4 ">
-<form method='POST' action=''>{% csrf_token %}
-	{{ form|crispy }}
-	<input type="submit" value="Submit form" class = "btn btn-default" />
-</form>
+<div class="row">
+	<div class="col-md-4 ml-auto mr-auto ">
+	<form method='POST' action=''>{% csrf_token %}
+		{{ form|crispy }}
+		<input type="submit" value="Submit form" class = "btn btn-primary" />
+	</form>
+	</div>
 </div>
 {% endblock %}
