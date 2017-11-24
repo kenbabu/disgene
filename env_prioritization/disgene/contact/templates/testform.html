@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+	<h1> Map Search Keywords to Ontologies </h1>
+
+		<div class="col-md-4 ml-auto mr-auto ">
+			<form action="{% url 'search' %}" method="get">{% csrf_token %}
+    			{{ form | crispy }}
+    			<input type="submit" value="Search" />
+			</form>
+		</div>
+		
+</div>
+<div >
+	<p>Search term: {{ name }} </p>
+	<p><b>Results:</b><br> 
+		{{ zooma_data }} 
+
+	</p>
+
+	<!-- <div>
+		{% for data  in zooma_data %}
+		{{ data }}
+		{% endfor %}
+	</div> -->
+
+</div>
+
+	
+
+{% endblock content %}

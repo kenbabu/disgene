@@ -3,6 +3,11 @@
 {% block content %}
 <h1> List of ontology mappings </h1>
 
-{{ onto_list }}
+<p>You searched for {{ form.data.message }} something </p>
+<p>You searched for {{ form.instance.message }} something </p>
+
+<p>You searched for {{ jina }} something </p>
+
+{# {{ onto_list }} #}
 
 {% endblock content %}

@@ -19,8 +19,17 @@ from django.conf.urls import include
 from django.conf.urls import url
 from django.contrib import admin
 from diseasemods import views as diseasemods_views
-from contact.views import  ContactView, contact, ContactFormView
-from ontomap.views import  OntologyMapView
+from contact.views import  (
+    search,
+    ContactFormView, 
+    TestFormView,
+
+    )
+from ontomap.views import (
+    OntologyMapView,
+    SearchFormView,
+    
+)
 from nanopub import views as nanopub_views
 from django.views.generic import TemplateView
 
@@ -29,13 +38,12 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^$', diseasemods_views.home, name='home'),
-    url(r'^contact/', contact, name='contact'),
-    url(r'^contact-cbv/', ContactView.as_view(), name='contact_cbv'),
     url(r'^ontomap/$', TemplateView.as_view(template_name='ontomap.html'), name='ontomap'),
-    url(r'^ontomap-list/$', OntologyMapView.as_view(), name='ontomap_list'),
-    url(r'^nanopub/', TemplateView.as_view(template_name='contact.html'), name='nanopub'),
+    url(r'^ontomap-list/$', OntologyMapView.as_view(), name='ontomaplist'),
+    url(r'^testform/$', TestFormView.as_view(), name='testform'),
+    url(r'^search/$', search, name='search'),
+    url(r'^search-test/$', SearchFormView.as_view(), name='searchtest'),
     url(r'^contact-form/$', ContactFormView.as_view(), name='contact_form'),
-    url(r'^tools/literature$',  TemplateView.as_view(template_name="contact.html"), name='literature'),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
 
