@@ -16,6 +16,11 @@ class Election(object):
         sorted_votes = sorted(self.votes.iteritems(),
                               key=operator.itemgetter(1),
                               reverse=True)
+        return sorted_votes[0][0]
+    def get_borda_rank(self):
+        sorted_votes = sorted(self.votes.iteritems(),
+                              key=operator.itemgetter(1),
+                              reverse=True)
         return sorted_votes
     def give_points(self, chosen, points):
         for candidate in self.candidates:
