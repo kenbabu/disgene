@@ -10,8 +10,11 @@ from django.template import loader, Context
 from django.views.generic import FormView, View, TemplateView
 
 from django.http import HttpResponse
+from django.http import JsonResponse
+import json
 import requests
 from ontomap import services
+
 
 from contact.forms import (
 	ContactForm,
@@ -32,10 +35,15 @@ def search(request):
 			error = True
 			return render(request, template, context)
 		else:
-			zooma_data = requests.get(zooma_url+'{0}'.format(name)).json()
+			try:
+				zooma_data = requests.get(zooma_url+'{0}'.format(name)).text
+				# zooma_data = json.loads(zooma_data, indent=4, sort_keys=False)
+			except:
+				"No response from ZOOMA!"
 
-			context = {'error':error, 'form':form, 'zooma_data': zooma_data, 'name':name}
+			context = {'error':error, 'form':form, 'zooma_data': json.loads(zooma_data), 'name':name}
 	return render(request, template, context)
+	# return JsonResponse(zooma_data, safe=False)
 
 class ContactFormView(FormView):
 	form_class = ContactForm

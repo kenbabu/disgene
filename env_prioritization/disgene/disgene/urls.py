@@ -45,6 +45,7 @@ urlpatterns = [
     url(r'^search-test/$', SearchFormView.as_view(), name='searchtest'),
     url(r'^contact-form/$', ContactFormView.as_view(), name='contact_form'),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^do-viewer/$', TemplateView.as_view(template_name='do_viewer.html'), name='do_viewer'),
 ]
 
 if settings.DEBUG:

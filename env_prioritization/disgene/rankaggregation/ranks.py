@@ -68,6 +68,7 @@ class Candidate(object):
     	return self.name
 
 if __name__ == "__main__":
+	#  Create a ranking object
 	gene_rank = Election()
 	gene1 = Candidate('gene1')
 	gene2 = Candidate('gene2')
@@ -92,3 +93,5 @@ if __name__ == "__main__":
 	print gene_rank.get_candidates()
 
 	print gene_rank.get_winner()
+
+	print gene_rank.get_borda_rank()

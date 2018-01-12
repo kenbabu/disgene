@@ -23,7 +23,7 @@ class OntologyMapView(TemplateView):
 class SearchFormView(FormView):
     form_class = SearchForm
     template_name = 'ontomap.html'
-    succes_url ='/ontomap-list/'
+    succes_url =reverse_lazy('ontomap-list')
 
     def form_valid(self, form):
         term = form.cleaned_data['search_term']

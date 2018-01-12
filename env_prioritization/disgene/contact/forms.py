@@ -7,5 +7,7 @@ class ContactForm(forms.Form):
 	comment = forms.CharField(label='Comment', widget=forms.Textarea)
 
 class TestForm(forms.Form):
-	name = forms.CharField(label='Name', max_length=100, required=False,)
+	name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your search keywords',
+													'name':'testsearch'
+													}), max_length=100, required=False,)
 	

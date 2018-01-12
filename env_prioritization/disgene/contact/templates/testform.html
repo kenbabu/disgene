@@ -7,7 +7,7 @@
 	<h1> Map Search Keywords to Ontologies </h1>
 
 		<div class="col-md-4 ml-auto mr-auto ">
-			<form action="{% url 'search' %}" method="get">{% csrf_token %}
+			<form action="{% url 'search' %}" method="get" id="ts1" name="testsearch">{% csrf_token %}
     			{{ form | crispy }}
     			<input type="submit" value="Search" />
 			</form>
@@ -17,15 +17,13 @@
 <div >
 	<p>Search term: {{ name }} </p>
 	<p><b>Results:</b><br> 
-		{{ zooma_data }} 
-
-	</p>
-
-	<!-- <div>
-		{% for data  in zooma_data %}
-		{{ data }}
+		{{ zooma_data }}
+	<ul>
+		{% for data in zooma_data %}
+		<li>{{ data.confidence }} - {{ data.annotatedProperty.propertyValue }} <a href="{{ data.annotatedProperty.uri }}"> data uri </a> </li>
 		{% endfor %}
-	</div> -->
+	</ul>
+	</p>
 
 </div>
 

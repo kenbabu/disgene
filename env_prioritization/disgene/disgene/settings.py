@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.twitter',
     # django-rest framework
     'rest_framework',
+    'ontologyviewer',
 
 
 ]
